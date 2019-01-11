@@ -35,7 +35,7 @@ if (sizeof($_GET)>0){
     // d($_GET);
     $rVille = $_GET['recherche'];
     // echo $_POST;
-    $req = $bdd->prepare('SELECT `ville_nom`, `ville_latitude_deg`, `ville_longitude_deg` FROM `villes` WHERE `ville_nom` LIKE :rVille"%" ORDER BY `ville_population_2012` DESC LIMIT 8');
+    $req = $bdd->prepare('SELECT `Nom`, `Latitude`, `Longitude` FROM `villes` WHERE `Nom` LIKE :rVille"%" LIMIT 8');
     $req->bindValue(':rVille', strtoupper($rVille));
     $req->execute();
     $villes = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -44,9 +44,9 @@ if (sizeof($_GET)>0){
     foreach ($villes as $ville) {
         array_push($tabVilles, 
             array(
-            "ville" => $ville['ville_nom'], 
-            "latitude" => $ville['ville_latitude_deg'], 
-            "longitude" => $ville['ville_longitude_deg'] 
+            "ville" => $ville['Nom'], 
+            "latitude" => $ville['Latitude'], 
+            "longitude" => $ville['Longitude'] 
         ));
     }
 
