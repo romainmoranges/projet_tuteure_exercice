@@ -1,6 +1,6 @@
 
 function completeListe(recherche, e) {
-    $get(`ville.php`, `${recherche}`, done, error);
+    $get(`ville.php`, {recherche : recherche}, done, error);
     
     function done(rep) {
         let res = JSON.parse(rep.responseText);

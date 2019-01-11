@@ -33,10 +33,10 @@ $bdd = getDB();
 
 if (sizeof($_GET)>0){
     // d($_GET);
-    $rVille = implode('',$_GET);
+    $rVille = $_GET['recherche'];
     // echo $_POST;
-    $req = $bdd->prepare('SELECT `ville_nom`, `ville_latitude_deg`, `ville_longitude_deg` FROM `villes` WHERE `ville_nom` LIKE :alexandre"%" ORDER BY `ville_population_2012` DESC LIMIT 8');
-    $req->bindValue(':alexandre', strtoupper($rVille));
+    $req = $bdd->prepare('SELECT `ville_nom`, `ville_latitude_deg`, `ville_longitude_deg` FROM `villes` WHERE `ville_nom` LIKE :rVille"%" ORDER BY `ville_population_2012` DESC LIMIT 8');
+    $req->bindValue(':rVille', strtoupper($rVille));
     $req->execute();
     $villes = $req->fetchAll(PDO::FETCH_ASSOC);
     // p($villes); 
